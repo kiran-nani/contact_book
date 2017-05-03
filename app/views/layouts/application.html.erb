@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ContactBook</title>
+		<%= csrf_meta_tags %>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">ContactBook</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="navbar-right" href="#">Signup</a></li>
+					<li><a class="navbar-right" href="#">Login</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<%= yield %>
+		</div>
+	</body>
+</html>
