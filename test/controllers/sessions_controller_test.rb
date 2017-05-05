@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
-  test "should get new" do
-    get sessions_new_url
+  test "should see login page" do
+    get login_path
     assert_response :success
+    assert_select "title", "Login | #{@common_title}"
   end
 
 end

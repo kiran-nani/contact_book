@@ -1,3 +1,4 @@
+<%= provide(:title, "Signup") %>
 <div class="errors col-md-6 col-md-offset-2">
 	<% if @user.errors.any? %>
 		<p class="alert alert-danger"><%= pluralize(@user.errors.count, 'error') %> stopped you from being signed up</p>
