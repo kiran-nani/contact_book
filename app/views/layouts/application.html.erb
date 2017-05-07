@@ -14,6 +14,8 @@
 				</div>
 				<ul class="nav navbar-nav navbar-right">
 					<% if user_logged_in? %>
+						<li><%= link_to "Create New Contact", new_contact_path %></li>
+						<li><a href="/contacts">My Contacts</a></li>
 						<li><%= link_to "Logout", logout_path, method: :delete, data: { confirm: 'Are you sure??' }, class: "navbar-right" %></li>
 					<% else %>
 						<li><a class="navbar-right" href="/signup">Signup</a></li>

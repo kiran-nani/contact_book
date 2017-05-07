@@ -6,5 +6,4 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "Login | #{@common_title}"
   end
-
 end

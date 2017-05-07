@@ -1,6 +1,18 @@
+@import 'reset';
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.main-heading{
+.text_center{
 	text-align: center;
+}
+.contact_single{
+	border: 1px solid blue;
+}
+.contact_single ul li{
+	-webkit-padding-start: 0px !important;
+}
+.contact_single ul li{
+	display: inline;
+	padding: 0 10px;
+	color: blue;
 }

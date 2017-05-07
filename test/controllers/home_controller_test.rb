@@ -6,5 +6,4 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "Home | #{@common_title}"
   end
-
 end
