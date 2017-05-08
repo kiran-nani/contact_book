@@ -6,6 +6,7 @@ class ContactsController < ApplicationController
 
 	def new
 		@contact = current_user.contacts.build
+    @categories = Category.all.map{ |c| [c.name, c.id] }
 	end
 
 	def edit
@@ -14,6 +15,7 @@ class ContactsController < ApplicationController
 
 	def create
 		@contact = current_user.contacts.build(contact_params)
+    @contact.category_id = params[:category_id]
 
 		if @contact.save
 			flash[:success] = "Contact created successfully"
@@ -42,6 +44,6 @@ class ContactsController < ApplicationController
 
 	private
 		def contact_params
-			params.require(:contact).permit(:name, :phone_number, :email)
+			params.require(:contact).permit(:name, :phone_number, :email, :category_id)
 		end
 end

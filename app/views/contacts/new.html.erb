@@ -12,6 +12,7 @@
 
 <div class="col-md-8 col-md-offset-4">
 	<%= form_for (@contact) do |f| %>
+    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Pick a Category") %>
 		<div class=" input-group">
 			<%= f.label :name %><br/>
 			<%= f.text_field :name, class: "form-control" %>
