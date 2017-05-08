@@ -1,18 +1,17 @@
 
 <% if user_logged_in? %>
 	<h2 class="text-center">Your Contacts</h2>
-	<div class="contact_single col-md-3">
-		<% @contacts.each do |contact| %>
-			<h4>Name: <%= contact.name %></h4>
-			<h4>Mobile No: <%= contact.phone_number %></h4>
-			<h4>Email: <%= contact.email %></h4>
-			<ul class="contact_options">
-				<%= link_to "Edit", edit_contact_path(contact) %>
-				<li>Delete</li>
-				<li>Mark as Favourite</li>
-			</ul>
-		<% end %>
-	</div>
+  <% @contacts.each do |contact| %>
+  	<div class="contact_single col-md-3">
+  			<h4>Name: <%= contact.name %></h4>
+  			<h4>Mobile No: <%= contact.phone_number %></h4>
+  			<h4>Email: <%= contact.email %></h4>
+  			<ul class="contact_options">
+          <%= link_to "Edit", edit_contact_path(contact) %>
+          <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure"} %>
+  			</ul>
+  	</div>
+  <% end %>
 <% else %>
 	<h4>You are not authorized to view this content. Signup or login to view your contacts</h4>	
 <% end %>	
