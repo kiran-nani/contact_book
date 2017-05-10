@@ -1,17 +1,45 @@
-
+<%= provide(:title, "Contacts") %>
 <% if user_logged_in? %>
-	<h2 class="text-center">Your Contacts</h2>
-  <% @contacts.each do |contact| %>
-  	<div class="contact_single col-md-3">
-  			<h4>Name: <%= contact.name %></h4>
-  			<h4>Mobile No: <%= contact.phone_number %></h4>
-  			<h4>Email: <%= contact.email %></h4>
-  			<ul class="contact_options">
-          <%= link_to "Edit", edit_contact_path(contact) %>
-          <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure"} %>
-  			</ul>
-  	</div>
-  <% end %>
+  <div class="filter"> 
+    <ul>
+      Filter:
+      <li class="<%= "active" if params[:category].blank? %>">
+      <%= link_to "All", contacts_path %>
+      </li>
+      <% Category.all.each do |category| %>
+      <li class="<%= "active" if params[:category] == category.name %>">
+      <%= link_to category.name, contacts_path(category: category.name) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% if @contacts.count == 0 %>
+    <h3>You don't have any contacts in <%= params[:category] %> category</h3>
+  <% else %>  
+  	<h2 class="text-center">Your Contacts</h2>
+    <% @contacts.each do |contact| %>
+    	<div class="contact_single col-md-3">
+    			<h4>Name: <%= contact.name %></h4>
+    			<h4>Mobile No: <%= contact.phone_number %></h4>
+          <h4>Email: <%= contact.email %></h4>
+    			<h4>Category: 
+          <% if contact.category_id == 1 %>
+          Family
+          <% elsif contact.category_id == 2 %>
+          Work
+          <% elsif contact.category_id == 3 %>
+          Friends
+          <% elsif contact.category_id == 4 %>
+          Others
+          <% end %>
+          </h4>
+    			<ul class="contact_options">
+            <%= link_to "Edit", edit_contact_path(contact) %>
+            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure"} %>
+    			</ul>
+    	</div>
+    <% end %>
+  <% end %>  
 <% else %>
 	<h4>You are not authorized to view this content. Signup or login to view your contacts</h4>	
 <% end %>	

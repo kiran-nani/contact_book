@@ -1,7 +1,12 @@
 class ContactsController < ApplicationController
 	before_action :logged_in_user
 	def index
-		@contacts = Contact.all
+    if params[:category].blank?
+		  @contacts = Contact.all
+    else
+      @category_id = Category.find_by(name: params[:category]).id
+      @contacts = Contact.where(:category_id => @category_id)
+    end  
 	end
 
 	def new
@@ -11,6 +16,7 @@ class ContactsController < ApplicationController
 
 	def edit
 		@contact = Contact.find(params[:id])
+    @categories = Category.all.map{ |c| [c.name, c.id] }
 	end
 
 	def create
@@ -27,6 +33,7 @@ class ContactsController < ApplicationController
 
 	def update
 		@contact = Contact.find(params[:id])
+    @contact.category_id = params[:category_id]
 		if @contact.update(contact_params)
 			flash[:success] = "Contact Updated Successfully"
 			redirect_to contacts_path
