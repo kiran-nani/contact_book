@@ -2,10 +2,10 @@ class ContactsController < ApplicationController
 	before_action :logged_in_user
 	def index
     if params[:category].blank?
-		  @contacts = Contact.all
+		  @contacts = current_user.contacts
     else
       @category_id = Category.find_by(name: params[:category]).id
-      @contacts = Contact.where(:category_id => @category_id)
+      @contacts = current_user.contacts.where(:category_id => @category_id)
     end  
 	end
 
@@ -15,7 +15,7 @@ class ContactsController < ApplicationController
 	end
 
 	def edit
-		@contact = Contact.find(params[:id])
+		@contact = current_user.contacts.find(params[:id])
     @categories = Category.all.map{ |c| [c.name, c.id] }
 	end
 
@@ -32,7 +32,7 @@ class ContactsController < ApplicationController
 	end
 
 	def update
-		@contact = Contact.find(params[:id])
+		@contact = current_user.contacts.find(params[:id])
     @contact.category_id = params[:category_id]
 		if @contact.update(contact_params)
 			flash[:success] = "Contact Updated Successfully"
@@ -43,7 +43,7 @@ class ContactsController < ApplicationController
 	end
 
   def destroy
-    @contact = Contact.find(params[:id])
+    @contact = current_user.contacts.find(params[:id])
     @contact.delete
     redirect_to contacts_path
   end
