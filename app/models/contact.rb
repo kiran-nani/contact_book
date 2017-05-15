@@ -2,7 +2,6 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :category
   validates :name, presence: true, length: { maximum: 30 }
-  validates :phone_number, presence: true,
-                           format: { with: VALID_PHONE_NUMBER_REGEX, message: "should contain only numbers" },
+  validates :phone_number, presence: true,                           
                            length: { maximum: 15 }
 end
