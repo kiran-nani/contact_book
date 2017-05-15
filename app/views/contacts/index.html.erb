@@ -21,7 +21,7 @@
     	<div class="contact_single col-md-3">
     			<h4>Name: <%= contact.name %></h4>
     			<h4>Mobile No: <%= contact.phone_number %></h4>
-          <h4>Email: <%= contact.email %></h4>
+          <% if contact.email? %><h4>Email: <%= contact.email %></h4><% end %>
     			<h4>Category: 
           <% if contact.category_id == 1 %>
           Family
