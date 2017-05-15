@@ -5,7 +5,7 @@
   	<div class="contact_single col-md-3">
   			<h4>Name: <%= contact.name %></h4>
   			<h4>Mobile No: <%= contact.phone_number %></h4>
-  			<h4>Email: <%= contact.email %></h4>
+  			<% if contact.email? %><h4>Email: <%= contact.email %></h4><% end %>
   			<ul class="contact_options">
           <%= link_to "Edit", edit_contact_path(contact) %>
           <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: "Are you sure"} %>
