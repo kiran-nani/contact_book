@@ -19,7 +19,8 @@
   	<h2 class="text-center">Your Contacts</h2>
     <% @contacts.each do |contact| %>
     	<div class="contact_single col-md-3">
-    			<h4>Name: <%= contact.name %></h4>
+    			<%= image_tag(contact.contact_photo_url(:thumb).to_s) %>
+          <h4>Name: <%= contact.name %></h4>
     			<h4>Mobile No: <%= contact.phone_number %></h4>
           <% if contact.email? %><h4>Email: <%= contact.email %></h4><% end %>
     			<h4>Category: 

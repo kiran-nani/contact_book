@@ -29,6 +29,10 @@
 			<%= f.email_field :email, class: "form-control" %>
 		</div>
 
+    <div class="input-group">
+      <%= f.label :contact_photo %><br/>
+      <%= f.file_field :contact_photo, class: "form-control" %>
+    </div>
 		<br/>
 
 		<%= f.submit "save", class: "btn btn-primary" %>
